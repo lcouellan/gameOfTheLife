@@ -1,0 +1,6 @@
+- Reproduction
+- Requin into sardine 
+- Collisions => Création + mouvements
+- Cycles de vie
+- Interface (si le temps le permet on laisse l'utilisateur choisir un nombre de requin et de sardines etc........)
+- Super sardine :'D
