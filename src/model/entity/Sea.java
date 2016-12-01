@@ -32,10 +32,10 @@ public class Sea {
 	/**
 	 * Constructeur de la classe Sea ou l'on choisi la taille que
 	 * l'on attribue à Sea
-	 * @param nbShark Nombre de Shark présent dans Sea
-	 * @param nbSardine Nombre de Sardine présent dans Sea
-	 * @param width Largeur de Sea
-	 * @param height Hauteur de Sea
+	 * @param nbShark Nombre de requins présents dans la mer
+	 * @param nbSardine Nombre de sardines présentes dans la mer
+	 * @param width Largeur de la mer
+	 * @param height Hauteur de la mer
 	 *
 	 */
 	public Sea(int nbShark, int nbSardine, int width, int height) {

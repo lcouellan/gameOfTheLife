@@ -1,5 +1,7 @@
 package model.entity;
 
+import model.state.StateFish;
+
 /**
  * La classe <b>Fish</b> permet la création de nos poissons (sardines ou requins).
  * 
@@ -23,7 +25,7 @@ public class Fish {
 	 * @param age : age du poisson
 	 * @param isAlive : indique si le poisson est en vie ou non
 	 * @param cX : Coordonnée X du poisson dans la mer
-	 * @param cY : Coordonnée Y du poisson dans la merde
+	 * @param cY : Coordonnée Y du poisson dans la mer
 	 */
 	public Fish(int status, long age, boolean isAlive, int cX, int cY) {
 		this.status = status;
@@ -36,7 +38,7 @@ public class Fish {
 	/**
 	 * 
 	 * @param cX : Coordonnée X du poisson dans la mer
-	 * @param cY : Coordonnée Y du poisson dans la merde
+	 * @param cY : Coordonnée Y du poisson dans la mer
 	 */
 	public Fish(int cX, int cY) {
 		this.status = 1;
@@ -51,6 +53,10 @@ public class Fish {
 	 */
 	public void isDead() {
 		this.isAlive = false;
+	}
+	
+	public void move(StateFish etat) {
+		etat.move(this);
 	}
 	
 	

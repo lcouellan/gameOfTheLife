@@ -11,15 +11,9 @@ import model.entity.Fish;
  */
 public abstract class StateFish {
 	
-	protected Fish fish;
-	
-	public StateFish(Fish fish) {
-		this.fish = fish;
-	}
-	
 	/**
 	 * Fais bouger notre poisson
 	 */
-	public abstract void move();
+	public abstract void move(Fish fish);
 	
 }

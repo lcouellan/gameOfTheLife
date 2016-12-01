@@ -11,13 +11,8 @@ import model.entity.Fish;
  */
 public class StateTeen extends StateFish{
 
-	public StateTeen(Fish fish) {
-		super(fish);
-		// TODO Auto-generated constructor stub
-	}
-
 	@Override
-	public void move() {
+	public void move(Fish fish) {
 		// TODO Auto-generated method stub
 		
 	}

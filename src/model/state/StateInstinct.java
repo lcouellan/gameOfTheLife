@@ -9,15 +9,10 @@ import model.entity.Fish;
  * @version 1.0
  * @see StateFish
  */
-public class StateInstinct extends StateFish{
-
-	public StateInstinct(Fish fish) {
-		super(fish);
-		// TODO Auto-generated constructor stub
-	}
+public class StateInstinct extends StateFish {
 
 	@Override
-	public void move() {
+	public void move(Fish fish) {
 		// TODO Auto-generated method stub
 		
 	}
