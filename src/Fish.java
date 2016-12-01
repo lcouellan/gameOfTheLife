@@ -1,4 +1,3 @@
-
 public class Fish {
 	protected  int status;
 	protected long age;
