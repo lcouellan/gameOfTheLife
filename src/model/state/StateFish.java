@@ -16,9 +16,10 @@ public abstract class StateFish {
 	public StateFish(Fish fish) {
 		this.fish = fish;
 	}
+	
 	/**
 	 * Fais bouger notre poisson
 	 */
-	public abstract move(fish);
+	public abstract void move();
 	
 }

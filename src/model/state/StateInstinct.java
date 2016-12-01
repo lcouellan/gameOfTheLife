@@ -1,5 +1,7 @@
 package model.state;
 
+import model.entity.Fish;
+
 /**
  * La classe <b>StateInstinct</b> est une classe qui permet la gestion des mouvements de nos poissons avec un état "de survie".
  * 
@@ -9,11 +11,14 @@ package model.state;
  */
 public class StateInstinct extends StateFish{
 
-	@Override
-	public int[] move(int coordX, int coordY) {
-		// TODO Auto-generated method stub
-		return null;
+	public StateInstinct(Fish fish) {
+		super(fish);
+		// TODO Auto-generated constructor stub
 	}
-	
 
+	@Override
+	public void move() {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -1,5 +1,7 @@
 package model.state;
 
+import model.entity.Fish;
+
 /**
  * La classe <b>StateChild</b> est une classe qui permet la gestion des mouvements de nos poissons avec un état "enfant".
  * 
@@ -9,14 +11,14 @@ package model.state;
  */
 public class StateChild extends StateFish{
 
+	public StateChild(Fish fish) {
+		super(fish);
+		// TODO Auto-generated constructor stub
+	}
+
 	@Override
-	public int[] move(int coordX, int coordY) {
+	public void move() {
 		// TODO Auto-generated method stub
 		
-		
-		
-		return null;
 	}
-	
-
 }
