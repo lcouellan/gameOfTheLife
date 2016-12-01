@@ -45,6 +45,26 @@ public class Sea {
 		this.HEIGHT = height;
 		this.cells = new int [WIDTH][HEIGHT];
 	}
+	
+	/**
+	 * Modifie le type de la case dans la mer (nul, sardine ou requin)
+	 * @param x : coordonnée x
+	 * @param y : coordonnée y
+	 * @param type : type de la cellule (nul, sardine, requin)
+	 */
+	public void setType(int x, int y, int type) {
+		this.cells[x][y] = type;
+	}
+	
+	/**
+	 * Donne le type de la case dans la mer
+	 * @param x : Coordonnée x
+	 * @param y : Coordonnée y
+	 * @return : type de la cellule 
+	 */
+	public int getType(int x, int y) {
+		return cells[x][y];
+	}
 
 	public int[][] getCells() {
 		return cells;

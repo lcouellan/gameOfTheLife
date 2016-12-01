@@ -15,14 +15,23 @@ import java.util.*;
 public class GameOfTheLife {
 
 	ArrayList<Fish> fishList = new ArrayList<Fish>();
-	Sea mer;
+	Sea sea;
+	
+	
 	
 	/**
-	 * Constructeur par défaut du jeu
+	 * Génère la vie dans notre mer, crée les sardines et les requins. Les place aléatoirement dans la merde.
 	 */
-	public GameOfTheLife(ArrayList<Fish> al, Sea mer) {
-		this.fishList = al;
-		this.mer = mer;
+	public void generateLife() {
+		this.sea = new Sea(2,3,10,10);
+		for(int i=0;i<this.sea.getNbShark();i++) {
+			this.fishList.add(new Shark(2,i));
+			this.sea.setType(2, i, 2);
+		}
+		for(int i=0;i<this.sea.getNbSardine();i++) {
+			this.fishList.add(new Sardine(3,i));
+			this.sea.setType(3, i, 1);
+		}
 	}
 	
 	/**
@@ -38,5 +47,21 @@ public class GameOfTheLife {
 	 */
 	public void lancerTemps(int nbCycles) {
 		
+	}
+	
+	public ArrayList<Fish> getFishList() {
+		return fishList;
+	}
+
+	public void setFishList(ArrayList<Fish> fishList) {
+		this.fishList = fishList;
+	}
+
+	public Sea getSea() {
+		return sea;
+	}
+
+	public void setSea(Sea sea) {
+		this.sea = sea;
 	}
 }

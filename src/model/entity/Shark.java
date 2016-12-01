@@ -8,6 +8,11 @@ package model.entity;
  * @see Sardine
  * @see Fish
  */
-public class Shark {
+public class Shark extends Fish{
+
+	public Shark(int cX, int cY) {
+		super(cX, cY);
+		// TODO Auto-generated constructor stub
+	}
 
 }
