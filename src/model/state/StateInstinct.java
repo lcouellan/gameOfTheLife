@@ -10,9 +10,9 @@ package model.state;
 public class StateInstinct extends StateFish{
 
 	@Override
-	public void move(int coordX, int coordY) {
+	public int[] move(int coordX, int coordY) {
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 	
 

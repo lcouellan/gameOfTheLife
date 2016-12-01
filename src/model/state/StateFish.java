@@ -10,8 +10,15 @@ import model.entity.Fish;
  * @see Fish
  */
 public abstract class StateFish {
+	
+	protected Fish fish;
+	
+	public StateFish(Fish fish) {
+		this.fish = fish;
+	}
 	/**
 	 * Fais bouger notre poisson
 	 */
-	public abstract void move(int coordX, int coordY);
+	public abstract move(fish);
+	
 }
