@@ -1,5 +1,6 @@
 package model.entity;
 
+import java.util.*;
 
 /**
  * Classe <b> GameOfTheLife </b> permet de régir le jeu. C'est à dire qu'elle
@@ -13,6 +14,15 @@ package model.entity;
  */
 public class GameOfTheLife {
 
+	ArrayList<Fish> fishList = new ArrayList<Fish>();
+	
+	/**
+	 * Constructeur par défaut du jeu
+	 */
+	public GameOfTheLife(ArrayList<Fish> al) {
+		this.fishList = al;
+	}
+	
 	/**
 	 * Méthode qui lance la simulation avec un nombre de cycles infini
 	 */
