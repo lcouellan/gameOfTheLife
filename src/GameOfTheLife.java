@@ -1,3 +1,4 @@
+
 /**
  * Classe <b> GameOfTheLife </b> permet de régir le jeu. C'est à dire qu'elle
  * instancie une nouvelle <b> Sea </b> et précise le nombre de poissons présents
