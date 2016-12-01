@@ -15,12 +15,14 @@ import java.util.*;
 public class GameOfTheLife {
 
 	ArrayList<Fish> fishList = new ArrayList<Fish>();
+	Sea mer;
 	
 	/**
 	 * Constructeur par défaut du jeu
 	 */
-	public GameOfTheLife(ArrayList<Fish> al) {
+	public GameOfTheLife(ArrayList<Fish> al, Sea mer) {
 		this.fishList = al;
+		this.mer = mer;
 	}
 	
 	/**
