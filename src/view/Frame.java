@@ -5,7 +5,9 @@ import java.awt.Container;
 
 import javax.swing.JFrame;
 
+import model.entity.Fish;
 import model.entity.GameOfTheLife;
+import model.state.StateChild;
 import controller.SeaPanel;
 
 /**
@@ -25,6 +27,11 @@ public class Frame extends JFrame {
 		this.setLocationRelativeTo(null);
 		GameOfTheLife game = new GameOfTheLife();
 		game.generateLife();
+		StateChild state = new StateChild();
+		for(Fish fish: game.getFishList()) {
+			fish.move(state);
+		}
+		game.refreshAllFishes();
 		SeaPanel pan = new SeaPanel(game.getSea());
 		Container cp = this.getContentPane();
 		cp.setLayout(new BorderLayout());

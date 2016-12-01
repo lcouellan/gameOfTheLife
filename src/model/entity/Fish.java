@@ -101,6 +101,10 @@ public class Fish {
 		this.cY = cY;
 	}
 	
+	public String toString() {
+		return "";
+	}
+	
 	
 }
 

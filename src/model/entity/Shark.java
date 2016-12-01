@@ -14,5 +14,9 @@ public class Shark extends Fish{
 		super(cX, cY);
 		// TODO Auto-generated constructor stub
 	}
+	
+	public String toString() {
+		return "R";
+	}
 
 }

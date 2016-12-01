@@ -15,4 +15,8 @@ public class Sardine extends Fish{
 		// TODO Auto-generated constructor stub
 	}
 	
+	public String toString() {
+		return "S";
+	}
+	
 }

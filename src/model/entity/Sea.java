@@ -13,20 +13,20 @@ package model.entity;
  */
 public class Sea {
 
-	protected int cells[][];
+	protected Fish cells[][];
 	protected int nbShark;
 	protected int nbSardine;
-	protected int WIDTH = 50;
-	protected int HEIGHT = 50;
+	protected int WIDTH = 10;
+	protected int HEIGHT = 10;
 	
 	/**
 	 * Constructeur par défaut de Sea, sa taille est définie par défaut
 	 * par les constante WIDTH et HEIGHT
 	 */
 	public Sea() {
-		this.nbSardine = 0;
-		this.nbShark = 0;
-		this.cells = new int [WIDTH][HEIGHT];
+		this.nbSardine = 5;
+		this.nbShark = 2;
+		this.cells = new Fish [WIDTH][HEIGHT];
 	}
 	
 	/**
@@ -43,7 +43,7 @@ public class Sea {
 		this.nbShark = nbShark;
 		this.WIDTH = width;
 		this.HEIGHT = height;
-		this.cells = new int [WIDTH][HEIGHT];
+		this.cells = new Fish [WIDTH][HEIGHT];
 	}
 	
 	/**
@@ -52,8 +52,8 @@ public class Sea {
 	 * @param y : coordonnée y
 	 * @param type : type de la cellule (nul, sardine, requin)
 	 */
-	public void setType(int x, int y, int type) {
-		this.cells[x][y] = type;
+	public void setType(int x, int y, Fish fish) {
+		this.cells[x][y] = fish;
 	}
 	
 	/**
@@ -62,15 +62,21 @@ public class Sea {
 	 * @param y : Coordonnée y
 	 * @return : type de la cellule 
 	 */
-	public int getType(int x, int y) {
-		return cells[x][y];
+	public String getType(int x, int y) {
+		try {
+			return cells[x][y].toString();
+		}
+		catch(NullPointerException e) {
+			return "";
+		}
+		
 	}
 
-	public int[][] getCells() {
+	public Fish[][] getCells() {
 		return cells;
 	}
 
-	public void setCells(int[][] cells) {
+	public void setCells(Fish[][] cells) {
 		this.cells = cells;
 	}
 
