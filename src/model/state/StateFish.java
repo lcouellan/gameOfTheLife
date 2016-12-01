@@ -1,3 +1,6 @@
+package model.state;
+import model.entity.Fish;
+
 
 /**
  * La classe <b>StateFish</b> est une classe abstraite qui permet la gestion des mouvements de nos poissons selon plusieurs états.

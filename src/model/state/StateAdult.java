@@ -1,3 +1,4 @@
+package model.state;
 
 /**
  * La classe <b>StateAdult</b> est une classe qui permet la gestion des mouvements de nos poissons avec un état "adulte".

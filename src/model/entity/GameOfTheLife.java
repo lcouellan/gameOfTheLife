@@ -1,3 +1,5 @@
+package model.entity;
+
 
 /**
  * Classe <b> GameOfTheLife </b> permet de régir le jeu. C'est à dire qu'elle

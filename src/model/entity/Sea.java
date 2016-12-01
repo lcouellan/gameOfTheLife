@@ -1,3 +1,5 @@
+package model.entity;
+
 
 /**
  * Classe <b> Sea </b> qui créer l'environnement dans lequel évoluent nos

@@ -1,3 +1,4 @@
+package model.entity;
 
 /**
  * La classe <b>Shark</b> permet la création de nos requins qui sont des poissons.

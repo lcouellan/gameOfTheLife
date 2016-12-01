@@ -1,3 +1,4 @@
+package model.entity;
 
 /**
  * La classe <b>Sardine</b> permet la création de nos sardines qui sont des poissons.

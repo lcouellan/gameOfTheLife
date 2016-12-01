@@ -1,3 +1,4 @@
+package model.entity;
 
 /**
  * La classe <b>Fish</b> permet la création de nos poissons (sardines ou requins).
