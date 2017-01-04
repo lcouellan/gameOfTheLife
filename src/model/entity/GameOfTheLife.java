@@ -3,10 +3,10 @@ package model.entity;
 import java.util.*;
 
 /**
- * Classe <b> GameOfTheLife </b> permet de régir le jeu. C'est à dire qu'elle
- * instancie une nouvelle <b> Sea </b> et précise le nombre de poissons présents
+ * Classe <b> GameOfTheLife </b> permet de rÃ©gir le jeu. C'est Ã  dire qu'elle
+ * instancie une nouvelle <b> Sea </b> et prÃ©cise le nombre de poissons prÃ©sents
  * 
- * @author Raphaël Erfani, Lénaïc Couellan
+ * @author RaphaÃ«l Erfani, LÃ©naÃ¯c Couellan
  * @version 1.0
  * @see Fish
  * @see	Sea
@@ -20,19 +20,25 @@ public class GameOfTheLife {
 	
 	
 	/**
-	 * Génère la vie dans notre mer, crée les sardines et les requins. Les place aléatoirement dans la merde.
+	 * GÃ©nÃ¨re la vie dans notre mer, crÃ©e les sardines et les requins. Les place alÃ©atoirement dans la merde.
 	 */
 	public void generateLife() {
 		this.sea = new Sea();
 		for(int i=0;i<this.sea.getNbShark();i++) {
-			Shark shark = new Shark(2,i);
+			Random rand = new Random();
+			int width = rand.nextInt(this.sea.getWidth() -  1);
+			int height = rand.nextInt(this.sea.getHeight() -  1);
+			Shark shark = new Shark(width,height);
 			this.fishList.add(shark);
-			this.sea.setType(2, i, shark);
+			this.sea.setType(width, height, shark);
 		}
 		for(int i=0;i<this.sea.getNbSardine();i++) {
-			Sardine sardine = new Sardine(3,i); 
+			Random rand = new Random();
+			int width = rand.nextInt(this.sea.getWidth() -  1);
+			int height = rand.nextInt(this.sea.getHeight() -  1);
+			Sardine sardine = new Sardine(width,height); 
 			this.fishList.add(sardine);
-			this.sea.setType(3, i, sardine);
+			this.sea.setType(width,height, sardine);
 		}
 	}
 	
@@ -48,14 +54,14 @@ public class GameOfTheLife {
 	}
 	
 	/**
-	 * Méthode qui lance la simulation avec un nombre de cycles infini
+	 * MÃ©thode qui lance la simulation avec un nombre de cycles infini
 	 */
 	public void lancerTemps() {
 		
 	}
 	
 	/**
-	 * Méthode qui lance la simulation avec un nombre de cycles défini
+	 * MÃ©thode qui lance la simulation avec un nombre de cycles dÃ©fini
 	 * @param nbCycles Nombre de cycles de vie
 	 */
 	public void lancerTemps(int nbCycles) {
