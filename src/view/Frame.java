@@ -22,7 +22,8 @@ public class Frame extends JFrame {
 	
 	public Frame() {
 		this.setTitle("Jeu de la vie");
-		this.setSize(600, 600);
+		this.setSize(1000, 700);
+		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		GameOfTheLife game = new GameOfTheLife();

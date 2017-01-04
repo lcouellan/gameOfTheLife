@@ -4,8 +4,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 import model.entity.Sardine;
 import model.entity.Sea;
@@ -29,9 +28,21 @@ public class SeaPanel extends JPanel{
 		super();
 		this.setLayout(new GridLayout(sea.getWidth(), sea.getHeight()));
 		for(int i = 0 ;i<sea.getWidth() * sea.getHeight() ; i++) {
-			JButton btn = new JButton("" + sea.getType(i%10, i/10));
-			this.add(btn);
+			JButton btn = new JButton();
+			btn.setSize(200,200);
+			switch (sea.getType(i%10,i/10)) {
+			    case "S":
+                    btn.setIcon(new ImageIcon(SeaPanel.class.getResource("/resources/sardine.png")));
+                    break;
+                case "R":
+                    btn.setIcon(new ImageIcon(SeaPanel.class.getResource("/resources/shark.png")));
+                    break;
+                default:
+                    btn.setIcon(new ImageIcon(SeaPanel.class.getResource("/resources/sea.png")));
+                    break;
+            }
+
+            this.add(btn);
 		}
 	}
-
 }
