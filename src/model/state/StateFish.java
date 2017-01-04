@@ -1,5 +1,6 @@
 package model.state;
 import model.entity.Fish;
+import model.entity.Sea;
 
 
 /**
@@ -13,7 +14,9 @@ public abstract class StateFish {
 	
 	/**
 	 * Fais bouger notre poisson
+	 * @param sea 
 	 */
-	public abstract void move(Fish fish);
+	public void move(Fish fish, Sea sea) {
+	}
 	
 }

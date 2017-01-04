@@ -25,14 +25,14 @@ public class GameOfTheLife {
 	public void generateLife() {
 		this.sea = new Sea();
 		for(int i=0;i<this.sea.getNbShark();i++) {
-			Shark shark = new Shark(2,i);
+			Shark shark = new Shark(1,i);
 			this.fishList.add(shark);
-			this.sea.setType(2, i, shark);
+			this.sea.setType(1, i, shark);
 		}
 		for(int i=0;i<this.sea.getNbSardine();i++) {
-			Sardine sardine = new Sardine(3,i); 
+			Sardine sardine = new Sardine(5,i); 
 			this.fishList.add(sardine);
-			this.sea.setType(3, i, sardine);
+			this.sea.setType(5, i, sardine);
 		}
 	}
 	

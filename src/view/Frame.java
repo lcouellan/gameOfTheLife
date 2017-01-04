@@ -29,7 +29,7 @@ public class Frame extends JFrame {
 		game.generateLife();
 		StateChild state = new StateChild();
 		for(Fish fish: game.getFishList()) {
-			fish.move(state);
+			fish.move(state, game.getSea());
 		}
 		game.refreshAllFishes();
 		SeaPanel pan = new SeaPanel(game.getSea());
