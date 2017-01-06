@@ -45,6 +45,7 @@ public class Frame extends JFrame implements Runnable{
             System.out.println("Tour :"+i);
             try
             {
+            	this.getContentPane().removeAll();
             	game.playCycle();
         		SeaPanel pan = new SeaPanel(game.getSea());
         		Panel panTurn = new Panel();
@@ -58,9 +59,6 @@ public class Frame extends JFrame implements Runnable{
         		panTurn.repaint();
         		this.setVisible(true);
                 Thread.sleep(1000);
-        		this.remove(pan);
-            	this.remove(panTurn);
-               
             }
             catch (InterruptedException e)
             {
