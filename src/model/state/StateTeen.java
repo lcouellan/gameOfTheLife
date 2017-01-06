@@ -1,29 +1,45 @@
 package model.state;
 
 import model.entity.Fish;
+import model.entity.Sea;
 
 /**
- * La classe <b>StateChild</b> est une classe qui permet la gestion des mouvements de nos requins avec un état "jeune adulte".
+ * La classe <b>StateChild</b> est une classe qui permet la gestion des mouvements de nos requins avec un Ã©tat "jeune adulte".
  * 
- * @author Raphaël Erfani, Lénaïc Couëllan
+ * @author RaphaÃ«l Erfani, LÃ©naÃ¯c CouÃ«llan
  * @version 1.0
  * @see StateFish
  */
 public class StateTeen extends StateFish{
 
-	@Override
+	
 	/**
-	 * Méthode qui permet de faire un déplacement plus intelligent que celui du statut "enfant".
-	 * Ce déplacement simule donc le déplacement d'un requin "jeune adulte". Ce dernier se déplace sur une case adjacente
-	 * lorsque cette dernière contient une sardine. Un requin "jeune adulte" à donc des déplacements plus menaçant qu'un requin "enfant"
-	 * Si aucunes sardine ne se trouvent sur les cases adjacentes, on reste sur un mouvement aléatoire.
+	 * MÃ©thode qui permet de faire un dÃ©placement plus intelligent que celui du statut "enfant".
+	 * Ce dÃ©placement simule donc le dÃ©placement d'un requin "jeune adulte". Ce dernier se dÃ©place sur une case adjacente
+	 * lorsque cette derniÃ¨re contient une sardine. Un requin "jeune adulte" Ã  donc des dÃ©placements plus menaÃ§ant qu'un requin "enfant"
+	 * Si aucunes sardine ne se trouvent sur les cases adjacentes, on reste sur un mouvement alÃ©atoire.
 	 */
-	public void move(Fish fish) {
-		// TODO Auto-generated method stub
-		// Si les cellules adjacentes sont différentes de null, utiliser le StateChild
-		// Sinon se diriger vers la case ou se trouve un poisson
-			// Si c'est un requin le déplacement est impossible
-			// Sinon on se déplace sur la case en mangeant la sardine
-		
+	public void move(Fish fish, Sea sea) {
+		String direction = fish.isSardineNear(sea);
+		switch(direction){
+		case "LEFT":
+			fish.setcX(fish.getcX()-1);
+			//supprimer la sardine se trouvant la avant
+			break;
+		case "RIGHT":
+			fish.setcX(fish.getcX()+1);
+			//supprimer la sardine se trouvant la avant
+			break;
+		case "TOP":
+			fish.setcY(fish.getcY()-1);
+			//supprimer la sardine se trouvant la avant
+			break;
+		case "BOTTOM":
+			fish.setcY(fish.getcY()+1);
+			//supprimer la sardine se trouvant la avant
+			break;
+		case "NULL":
+			//faire le déplacement aléatoire du stateChild
+		}
 	}
 }
