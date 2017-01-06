@@ -10,6 +10,9 @@ package model.entity;
  */
 public class Sardine extends Fish{
 
+	public Sardine() {
+		super();
+	}
 	public Sardine(int cX, int cY) {
 		super(cX, cY);
 		// TODO Auto-generated constructor stub

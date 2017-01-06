@@ -1,6 +1,7 @@
 package model.state;
 
 import model.entity.Fish;
+import model.entity.GameOfTheLife;
 import model.entity.Sea;
 
 /**
@@ -19,8 +20,8 @@ public class StateTeen extends StateFish{
 	 * lorsque cette derniÃ¨re contient une sardine. Un requin "jeune adulte" Ã  donc des dÃ©placements plus menaÃ§ant qu'un requin "enfant"
 	 * Si aucunes sardine ne se trouvent sur les cases adjacentes, on reste sur un mouvement alÃ©atoire.
 	 */
-	public void move(Fish fish, Sea sea) {
-		String direction = fish.isSardineNear(sea);
+	public void move(Fish fish, GameOfTheLife game) {
+		String direction = fish.isSardineNear(game);
 		switch(direction){
 		case "LEFT":
 			fish.setcX(fish.getcX()-1);
@@ -39,7 +40,13 @@ public class StateTeen extends StateFish{
 			//supprimer la sardine se trouvant la avant
 			break;
 		case "NULL":
-			//faire le déplacement aléatoire du stateChild
+			super.move(fish, game);
+			return;
+		}
+		game.getSea().setType(fish.getcX(),fish.getcY(),fish);
+		for(int i = 0; i < game.getFishList().size(); i++){
+		     if (game.getFishList().get(i).getcX() == fish.getcX() && game.getFishList().get(i).getcY() == fish.getcY() && game.getFishList().get(i).toString() == "S")
+		    	 game.getFishList().remove(i);
 		}
 	}
 }

@@ -16,7 +16,6 @@ public class Fish {
 	protected boolean isAlive = true;
 	protected int cX;
 	protected int cY;
-	protected static String TYPE;
 	
 
 	/**
@@ -34,7 +33,6 @@ public class Fish {
 		this.isAlive = isAlive;
 		this.cX = cX;
 		this.cY = cY;
-		this.TYPE = type;
 	}
 	
 	/**
@@ -57,25 +55,33 @@ public class Fish {
 		this.isAlive = false;
 	}
 	
-	public void move(StateFish etat, Sea sea) {
-		etat.move(this,sea);
+	public void move(StateFish etat, GameOfTheLife game) {
+		etat.move(this,game);
 	}
 	
 	// On test si il y a une sardine dans les cases adjacentes
 	// Si il y en a une on retourne la direction dans laquelle elle se trouve
-	public String isSardineNear(Sea sea) {
+	public String isSardineNear(GameOfTheLife game) {
 		// Vérification a gauche
-		if(sea.getType(this.getcX()-1, this.getcY()) == "S"){
-			return "LEFT";
+		if (this.getcX() != 0) {
+			if(game.getSea().getType(this.getcX()-1, this.getcY()) == "S"){
+				return "LEFT";
+			}
 		}
-		if(sea.getType(this.getcX()+1, this.getcY()) == "S"){
-			return "RIGHT";
+		if (this.getcX() < game.getSea().getWidth() - 1) {
+			if(game.getSea().getType(this.getcX()+1, this.getcY()) == "S"){
+				return "RIGHT";
+			}
 		}
-		if(sea.getType(this.getcX(), this.getcY()-1) == "S"){
-			return "TOP";
+		if (this.getcY() != 0) {
+			if(game.getSea().getType(this.getcX(), this.getcY()-1) == "S"){
+				return "TOP";
+			}
 		}
-		if(sea.getType(this.getcX(), this.getcY()+1) == "S"){
-			return "BOTTOM";
+		if (this.getcY() < game.getSea().getHeight() - 1) {
+			if(game.getSea().getType(this.getcX(), this.getcY()+1) == "S"){
+				return "BOTTOM";
+			}
 		}
 		return "NULL";
 	}

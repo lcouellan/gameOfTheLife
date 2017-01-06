@@ -4,6 +4,8 @@ import java.awt.Panel;
 import java.util.*;
 
 import model.state.StateChild;
+import model.state.StateTeen;
+import sun.security.provider.SHA;
 
 /**
  * Classe <b> GameOfTheLife </b> permet de rÃ©gir le jeu. C'est Ã  dire qu'elle
@@ -29,19 +31,35 @@ public class GameOfTheLife{
 		this.sea = new Sea();
 		for(int i=0;i<this.sea.getNbShark();i++) {
 			Random rand = new Random();
-			int width = rand.nextInt(this.sea.getWidth() -  1);
-			int height = rand.nextInt(this.sea.getHeight() -  1);
-			Shark shark = new Shark(width,height);
-			this.fishList.add(shark);
-			this.sea.setType(width, height, shark);
+			Boolean spawn = true;
+			int coordX = rand.nextInt(this.sea.getWidth() -  1);
+			int coordY = rand.nextInt(this.sea.getHeight() -  1);
+			for(int j = 0; j < this.getFishList().size(); j++){
+				if (this.getFishList().get(j).getcX() == coordX && this.getFishList().get(j).getcY() == coordY) {
+					spawn = false;
+				}
+			}
+			if (spawn == true) {
+				Shark shark = new Shark(coordX,coordY);
+				this.fishList.add(shark);
+				this.sea.setType(coordX, coordY, shark);
+			}
 		}
 		for(int i=0;i<this.sea.getNbSardine();i++) {
 			Random rand = new Random();
-			int width = rand.nextInt(this.sea.getWidth() -  1);
-			int height = rand.nextInt(this.sea.getHeight() -  1);
-			Sardine sardine = new Sardine(width,height); 
-			this.fishList.add(sardine);
-			this.sea.setType(width,height, sardine);
+			Boolean spawn = true;
+			int coordX = rand.nextInt(this.sea.getWidth() -  1);
+			int coordY = rand.nextInt(this.sea.getHeight() -  1);
+			for(int j = 0; j < this.getFishList().size(); j++){
+				if (this.getFishList().get(j).getcX() == coordX && this.getFishList().get(j).getcY() == coordY ) {
+					spawn = false;
+				}
+			}
+			if (spawn == true) {
+				Sardine sardine = new Sardine(coordX,coordY);
+				this.fishList.add(sardine);
+				this.sea.setType(coordX, coordY, sardine);
+			}
 		}
 	}
 	
@@ -58,8 +76,12 @@ public class GameOfTheLife{
 	
 	public void playCycle(){
 		StateChild state = new StateChild();
-		for(Fish fish: this.getFishList()) {
-			fish.move(state,this.sea);
+		StateTeen state2 = new StateTeen();
+		for(Fish shark: this.getSharkList()) {
+			shark.move(state2,this);
+		}
+		for(Fish sardine: this.getSardineList()) {
+			sardine.move(state,this);
 		}
 		this.refreshAllFishes();
 	}
@@ -67,7 +89,25 @@ public class GameOfTheLife{
 	public ArrayList<Fish> getFishList() {
 		return fishList;
 	}
+	
+	public ArrayList<Shark> getSharkList() {
+		ArrayList<Shark> sharkList = new ArrayList<Shark>();
+		for(int i = 0; i < this.getFishList().size(); i++){
+		     if (this.getFishList().get(i).toString() == "R")
+		    	 sharkList.add((Shark)this.getFishList().get(i));
+		}
+		return sharkList;
+	}
 
+	public ArrayList<Sardine> getSardineList() {
+		ArrayList<Sardine> sardineList = new ArrayList<Sardine>();
+		for(int i = 0; i < this.getFishList().size(); i++){
+		     if (this.getFishList().get(i).toString() == "S")
+		    	 sardineList.add((Sardine)this.getFishList().get(i));
+		}
+		return sardineList;
+	}
+	
 	public void setFishList(ArrayList<Fish> fishList) {
 		this.fishList = fishList;
 	}

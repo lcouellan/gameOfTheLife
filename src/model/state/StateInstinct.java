@@ -1,6 +1,7 @@
 package model.state;
 
 import model.entity.Fish;
+import model.entity.GameOfTheLife;
 import model.entity.Sea;
 
 /**
@@ -13,7 +14,7 @@ import model.entity.Sea;
 public class StateInstinct extends StateFish {
 
 	@Override
-	public void move(Fish fish, Sea sea) {
+	public void move(Fish fish, GameOfTheLife game) {
 		// TODO Auto-generated method stub
 		
 	}

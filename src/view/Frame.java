@@ -41,7 +41,7 @@ public class Frame extends JFrame implements Runnable{
 		// TODO Auto-generated method stub
 		GameOfTheLife game = new GameOfTheLife();
 		game.generateLife();
-		for(int i = 1; i < 5; i++){
+		for(int i = 1; i < 10; i++){
             System.out.println("Tour :"+i);
             try
             {
