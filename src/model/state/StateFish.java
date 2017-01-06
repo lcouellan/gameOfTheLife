@@ -16,7 +16,33 @@ public abstract class StateFish {
 	 * Fais bouger notre poisson
 	 * @param sea 
 	 */
-	public void move(Fish fish, Sea sea) {
+	public abstract void move(Fish fish, Sea sea);
+	
+	public boolean isMovePossible(Fish fish,Sea sea,String direction) {
+		switch(direction){
+		case "LEFT":
+			// Si on est sur le bord gauche
+			if(fish.getcX() == 0){
+				return false;
+			}
+			break;
+		case "RIGHT":
+			if(fish.getcX() == sea.getWidth()-1){
+				return false;
+			}
+			break;
+		case "TOP":
+			if(fish.getcY() == 0){
+				return false;
+			}
+			break;
+		case "BOTTOM":
+			if(fish.getcY() == sea.getHeight()-1){
+				return false;
+			}
+			break;
+		}
+		return true;
 	}
 	
 }

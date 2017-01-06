@@ -20,17 +20,26 @@ public class StateTeen extends StateFish{
 	 * Si aucunes sardine ne se trouvent sur les cases adjacentes, on reste sur un mouvement alÃ©atoire.
 	 */
 	public void move(Fish fish, Sea sea) {
-		if (fish.isSardineNear(sea) == "haut") {
-				fish.setcY(fish.getcY()-1);
-		}
-		if (fish.isSardineNear(sea) == "gauche") {
-				fish.setcY(fish.getcX()-1);
-		}
-		if (fish.isSardineNear(sea) == "bas") {
-				fish.setcY(fish.getcY()+1);
-		}
-		if (fish.isSardineNear(sea) == "droite") {
-				fish.setcY(fish.getcX()+1);
+		String direction = fish.isSardineNear(sea);
+		switch(direction){
+		case "LEFT":
+			fish.setcX(fish.getcX()-1);
+			//supprimer la sardine se trouvant la avant
+			break;
+		case "RIGHT":
+			fish.setcX(fish.getcX()+1);
+			//supprimer la sardine se trouvant la avant
+			break;
+		case "TOP":
+			fish.setcY(fish.getcY()-1);
+			//supprimer la sardine se trouvant la avant
+			break;
+		case "BOTTOM":
+			fish.setcY(fish.getcY()+1);
+			//supprimer la sardine se trouvant la avant
+			break;
+		case "NULL":
+			//faire le déplacement aléatoire du stateChild
 		}
 	}
 }

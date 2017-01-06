@@ -43,11 +43,11 @@ public class Fish {
 	 * @param cY : Coordonnée Y du poisson dans la mer
 	 */
 	public Fish(int cX, int cY) {
-		this.status = 1;
-		this.age = 0;
-		this.isAlive = true;
-		this.cX = cX;
-		this.cY = cY;
+		this(1,0,true,cX,cY,"S");
+	}
+	
+	public Fish() {
+		this(0,0);
 	}
 	
 	/**
@@ -58,59 +58,26 @@ public class Fish {
 	}
 	
 	public void move(StateFish etat, Sea sea) {
-		if (this.isMovePossible(sea)){
-			etat.move(this,sea);
-			System.out.println(this.getStatus() + " : " +this.getcX());
-			System.out.println(this.getStatus() + " : " +this.getcY());
-		}
-	}
-	
-	// On test si on est pas au bord de la mer et qu'il n'y a pas de poisson occupant la case ou l'on veut se d�placer
-	public boolean isMovePossible(Sea sea) {
-		// deplacement en haut
-		if (this.getcY() != 0) {
-			if(sea.getType(this.getcX(), this.getcY()-1) != "") {
-				return true;
-			}
-		}
-		// deplacement a gauche
-		if (this.getcX() != 0){
-			if (sea.getType(this.getcX()-1, this.getcY()) != ""){
-				return true;
-			}
-		}
-		// deplacement en bas
-		if (this.getcX() != 9 && sea.getType(this.getcX(), this.getcY()+1) != "") {
-			return true;
-		}
-		// deplacement a droite
-		if (this.getcX() != 9 && sea.getType(this.getcX()+1, this.getcY()) != "") {
-			return true;
-		}
-		return false;
+		etat.move(this,sea);
 	}
 	
 	// On test si il y a une sardine dans les cases adjacentes
 	// Si il y en a une on retourne la direction dans laquelle elle se trouve
 	public String isSardineNear(Sea sea) {
-		String direction = "";
-		// Si il y a une sardine en haut 
-		if (this.getcY() != 0 && sea.getType(this.getcX(), this.getcY()-1) != "S") {
-			direction = "haut";
+		// Vérification a gauche
+		if(sea.getType(this.getcX()-1, this.getcY()) == "S"){
+			return "LEFT";
 		}
-		// Si il y a une sardine a gauche
-		if (this.getcX() != 0 && sea.getType(this.getcX()-1, this.getcY()) != "S") {
-			direction = "gauche";
+		if(sea.getType(this.getcX()+1, this.getcY()) == "S"){
+			return "RIGHT";
 		}
-		// Si il y a une sardine en bas
-		if (this.getcX() != 9 && sea.getType(this.getcX(), this.getcY()+1) != "S") {
-			direction = "bas";
+		if(sea.getType(this.getcX(), this.getcY()-1) == "S"){
+			return "TOP";
 		}
-		// Si il y a une sardine a droite
-		if (this.getcX() != 9 && sea.getType(this.getcX()+1, this.getcY()) != "S") {
-			direction = "droite";
+		if(sea.getType(this.getcX(), this.getcY()+1) == "S"){
+			return "BOTTOM";
 		}
-		return direction;
+		return "NULL";
 	}
 	
 	public boolean targetSardine(Sea sea) {

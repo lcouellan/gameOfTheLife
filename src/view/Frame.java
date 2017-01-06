@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import model.entity.Fish;
 import model.entity.GameOfTheLife;
 import model.state.StateChild;
+import model.state.StateTeen;
 import controller.SeaPanel;
 
 /**
@@ -29,8 +30,13 @@ public class Frame extends JFrame {
 		GameOfTheLife game = new GameOfTheLife();
 		game.generateLife();
 		StateChild state = new StateChild();
+		StateTeen state2 = new StateTeen();
 		for(Fish fish: game.getFishList()) {
+			System.out.println("Avant déplacement");
+			System.out.println("X : " + fish.getcX() + " Y : " + fish.getcY());
 			fish.move(state, game.getSea());
+			System.out.println("Après déplacement");
+			System.out.println("X : " + fish.getcX() + " Y : " + fish.getcY());
 		}
 		game.refreshAllFishes();
 		SeaPanel pan = new SeaPanel(game.getSea());
