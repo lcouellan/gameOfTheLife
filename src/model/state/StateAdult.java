@@ -2,7 +2,6 @@ package model.state;
 
 import model.entity.Fish;
 import model.entity.GameOfTheLife;
-import model.entity.Sea;
 
 /**
  * La classe <b>StateAdult</b> est une classe qui permet la gestion des mouvements de nos poissons avec un état "adulte".

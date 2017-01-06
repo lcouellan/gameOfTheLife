@@ -1,11 +1,9 @@
 package model.entity;
 
-import java.awt.Panel;
 import java.util.*;
 
 import model.state.StateChild;
 import model.state.StateTeen;
-import sun.security.provider.SHA;
 
 /**
  * Classe <b> GameOfTheLife </b> permet de rÃ©gir le jeu. C'est Ã  dire qu'elle

@@ -7,10 +7,7 @@ import java.awt.Panel;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import model.entity.Fish;
 import model.entity.GameOfTheLife;
-import model.state.StateChild;
-import model.state.StateTeen;
 import controller.SeaPanel;
 
 /**

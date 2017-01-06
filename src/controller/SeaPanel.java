@@ -1,14 +1,10 @@
 package controller;
 
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-import model.entity.Sardine;
 import model.entity.Sea;
-import model.entity.Shark;
 
 /**
  * La classe <b>SeaPanel</b> est le panel principal de notre interface graphique. Il affiche la mer et les poissons.
