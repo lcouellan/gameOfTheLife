@@ -1,6 +1,9 @@
 package model.entity;
 
+import java.awt.Panel;
 import java.util.*;
+
+import model.state.StateChild;
 
 /**
  * Classe <b> GameOfTheLife </b> permet de rÃ©gir le jeu. C'est Ã  dire qu'elle
@@ -12,7 +15,7 @@ import java.util.*;
  * @see	Sea
  *
  */
-public class GameOfTheLife {
+public class GameOfTheLife{
 
 	ArrayList<Fish> fishList = new ArrayList<Fish>();
 	Sea sea;
@@ -53,19 +56,12 @@ public class GameOfTheLife {
 		}
 	}
 	
-	/**
-	 * MÃ©thode qui lance la simulation avec un nombre de cycles infini
-	 */
-	public void lancerTemps() {
-		
-	}
-	
-	/**
-	 * MÃ©thode qui lance la simulation avec un nombre de cycles dÃ©fini
-	 * @param nbCycles Nombre de cycles de vie
-	 */
-	public void lancerTemps(int nbCycles) {
-		
+	public void playCycle(){
+		StateChild state = new StateChild();
+		for(Fish fish: this.getFishList()) {
+			fish.move(state);
+		}
+		this.refreshAllFishes();
 	}
 	
 	public ArrayList<Fish> getFishList() {
@@ -83,4 +79,6 @@ public class GameOfTheLife {
 	public void setSea(Sea sea) {
 		this.sea = sea;
 	}
+
+	
 }
