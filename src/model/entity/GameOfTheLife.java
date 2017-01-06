@@ -59,7 +59,7 @@ public class GameOfTheLife{
 	public void playCycle(){
 		StateChild state = new StateChild();
 		for(Fish fish: this.getFishList()) {
-			fish.move(state);
+			fish.move(state,this.sea);
 		}
 		this.refreshAllFishes();
 	}
