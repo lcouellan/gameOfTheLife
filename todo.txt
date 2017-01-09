@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 - Reproduction
 - Requins adultes
 - Vieilissement des poissons
+=======
+- Ajouter un comportements aux requins en fonction de leurs age car ils sont obligatoirement ado dès leurs création pour l'instant
+- Interdire mouvements sur Requins
+- Collisions => Création + mouvements // Attentions aux croisements 
+>>>>>>> 10420bf8671872074c428b52f94735c5b0238d18
 - Interface (si le temps le permet on laisse l'utilisateur choisir un nombre de requin et de sardines etc........)
 - Super sardine :'D

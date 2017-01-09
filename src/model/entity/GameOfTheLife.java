@@ -103,11 +103,39 @@ public class GameOfTheLife {
 			} else {
 				shark.move(stateT,this);
 			}
-			
 		}
 		this.refreshAllFishes();
 		for(Fish sardine: this.getSardineList()) {
 			sardine.move(stateC,this);
+			// tous les 4 cycles une sardine donne naissance à une autre
+			if(sardine.getAge() % 4 == 0 && sardine.getAge() > 0) {
+				System.out.println(sardine.getAge());
+				String newBorn = sardine.isCaseEmpty(this);
+				switch(newBorn){
+				case "LEFT":
+					Sardine newSardineL = new Sardine(sardine.getcX()-1,sardine.getcY());
+					this.fishList.add(newSardineL);
+					this.sea.setType(newSardineL.getcX(), newSardineL.getcY(), sardine);
+					break;
+				case "RIGHT":
+					Sardine newSardineR = new Sardine(sardine.getcX()+1,sardine.getcY());
+					this.fishList.add(newSardineR);
+					this.sea.setType(newSardineR.getcX(), newSardineR.getcY(), sardine);
+					break;
+				case "TOP":
+					Sardine newSardineT = new Sardine(sardine.getcX(),sardine.getcY()-1);
+					this.fishList.add(newSardineT);
+					this.sea.setType(newSardineT.getcX(), newSardineT.getcY(), sardine);
+					break;
+				case "BOTTOM":
+					Sardine newSardineB = new Sardine(sardine.getcX(),sardine.getcY()+1);
+					this.fishList.add(newSardineB);
+					this.sea.setType(newSardineB.getcX(), newSardineB.getcY(), sardine);
+					break;
+				case "NULL":
+					break;
+				}
+			}
 		}
 		this.refreshAllFishes();
 	}
@@ -118,10 +146,8 @@ public class GameOfTheLife {
 	 */
 	public void startTime(int cycle) {
 		playCycle();
-		if (cycle > 0 && cycle % 3 == 0) {
-			growFishes(3);
-			this.refreshAllFishes();
-		}
+		growFishes(1);
+		this.refreshAllFishes();
 	}
 	
 	/**

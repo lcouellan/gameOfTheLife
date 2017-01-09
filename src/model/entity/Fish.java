@@ -95,6 +95,30 @@ public class Fish {
 		return "NULL";
 	}
 	
+	public String isCaseEmpty(GameOfTheLife game) {
+		if (this.getcX() != 0) {
+			if(game.getSea().getType(this.getcX()-1, this.getcY()) == ""){
+				return "LEFT";
+			}
+		}
+		if (this.getcX() < game.getSea().getWidth() - 1) {
+			if(game.getSea().getType(this.getcX()+1, this.getcY()) == ""){
+				return "RIGHT";
+			}
+		}
+		if (this.getcY() != 0) {
+			if(game.getSea().getType(this.getcX(), this.getcY()-1) == ""){
+				return "TOP";
+			}
+		}
+		if (this.getcY() < game.getSea().getHeight() - 1) {
+			if(game.getSea().getType(this.getcX(), this.getcY()+1) == ""){
+				return "BOTTOM";
+			}
+		}
+		return "NULL";
+	}
+	
 	public boolean targetSardine(Sea sea) {
 		return false;
 	}

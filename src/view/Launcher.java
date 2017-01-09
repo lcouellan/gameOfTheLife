@@ -199,7 +199,7 @@ public class Launcher extends JFrame implements ActionListener{
 
 	public static void main(String[] args) {
 		//new Launcher();
-		new Frame(2,4);
+		new Frame(4,6);
 		
 	}
 
