@@ -2,6 +2,7 @@ package model.state;
 
 import model.entity.Fish;
 import model.entity.GameOfTheLife;
+import model.entity.Shark;
 
 /**
  * La classe <b>StateTeen</b> est une classe qui permet la gestion des mouvements de nos requins avec un état "jeune adulte".
@@ -44,8 +45,11 @@ public class StateTeen extends StateFish{
 		}
 		game.getSea().setType(fish.getcX(),fish.getcY(),fish);
 		for(int i = 0; i < game.getFishList().size(); i++){
-		     if (game.getFishList().get(i).getcX() == fish.getcX() && game.getFishList().get(i).getcY() == fish.getcY() && game.getFishList().get(i).toString() == "S")
+		     if (game.getFishList().get(i).getcX() == fish.getcX() && game.getFishList().get(i).getcY() == fish.getcY() && game.getFishList().get(i).toString() == "S"){
 		    	 game.getFishList().remove(i);
+		     	 Shark shark = (Shark) fish;
+		     	 shark.eat();
+		     }
 		}
 	}
 }

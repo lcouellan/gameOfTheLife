@@ -15,17 +15,19 @@ public class Sea {
 	protected Fish cells[][];
 	protected int nbShark;
 	protected int nbSardine;
-	protected int WIDTH = 10;
-	protected int HEIGHT = 10;
+	protected int width = 10;
+	protected int height = 10;
 	
 	/**
 	 * Constructeur par défaut de Sea, sa taille est définie par défaut
 	 * par les constantes WIDTH et HEIGHT.
 	 */
 	public Sea() {
-		this.nbSardine = 5;
-		this.nbShark = 2;
-		this.cells = new Fish [WIDTH][HEIGHT];
+		this(5,2,10,10);
+	}
+	
+	public Sea(int nbSharks, int nbSardines) {
+		this(nbSharks,nbSardines,10,10);
 	}
 	
 	/**
@@ -40,9 +42,9 @@ public class Sea {
 	public Sea(int nbShark, int nbSardine, int width, int height) {
 		this.nbSardine = nbSardine;
 		this.nbShark = nbShark;
-		this.WIDTH = width;
-		this.HEIGHT = height;
-		this.cells = new Fish [WIDTH][HEIGHT];
+		this.width = width;
+		this.height = height;
+		this.cells = new Fish [width][height];
 	}
 	
 	/**
@@ -96,19 +98,19 @@ public class Sea {
 	}
 
 	public int getWidth() {
-		return WIDTH;
+		return this.width;
 	}
 
 	public void setWidth(int width) {
-		WIDTH = width;
+		this.width = width;
 	}
 
 	public int getHeight() {
-		return HEIGHT;
+		return this.height;
 	}
 
 	public void setHeight(int height) {
-		HEIGHT = height;
+		this.height = height;
 	}
 	
 	

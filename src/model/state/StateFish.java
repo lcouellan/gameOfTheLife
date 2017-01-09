@@ -2,6 +2,7 @@ package model.state;
 import model.entity.Fish;
 import model.entity.GameOfTheLife;
 import model.entity.Sea;
+import model.entity.Shark;
 
 
 /**
@@ -47,6 +48,16 @@ public abstract class StateFish {
 			else
 				move(fish,game);
 		}
+		if (fish.toString() == "R" && game.getSea().getType(fish.getcX(), fish.getcY()) == "S"){
+			game.getSea().setType(fish.getcX(),fish.getcY(),fish);
+			for(int i = 0; i < game.getFishList().size(); i++){
+			     if (game.getFishList().get(i).getcX() == fish.getcX() && game.getFishList().get(i).getcY() == fish.getcY() && game.getFishList().get(i).toString() == "S"){
+			    	 game.getFishList().remove(i);
+			     	 Shark shark = (Shark) fish;
+			     	 shark.eat();
+			     }
+			}
+		}
 	}
 	
 	/**
@@ -60,22 +71,38 @@ public abstract class StateFish {
 		switch(direction){
 		case "LEFT":
 			// Si on est sur le bord gauche
-			if(fish.getcX() == 0){
+			if(fish.getcX() == 0) {
+				return false;
+			}else if(sea.getType(fish.getcX() - 1, fish.getcY()) == "R") {
+				return false;
+			}else if (sea.getType(fish.getcX() - 1, fish.getcY()) == "S" && fish.toString() == "S") {
 				return false;
 			}
 			break;
 		case "RIGHT":
-			if(fish.getcX() == sea.getWidth()-1){
+			if(fish.getcX() == sea.getWidth() - 1) {
+				return false;
+			}else if(sea.getType(fish.getcX() + 1, fish.getcY()) == "R") {
+				return false;
+			}else if(sea.getType(fish.getcX() + 1, fish.getcY()) == "S" && fish.toString() == "S") {
 				return false;
 			}
 			break;
 		case "TOP":
-			if(fish.getcY() == 0){
+			if(fish.getcY() == 0) {
+				return false;
+			}else if(sea.getType(fish.getcX(), fish.getcY() - 1) == "R") {
+				return false;
+			}else if(sea.getType(fish.getcX(), fish.getcY() - 1) == "S" && fish.toString() == "S") {
 				return false;
 			}
 			break;
 		case "BOTTOM":
-			if(fish.getcY() == sea.getHeight()-1){
+			if(fish.getcY() == sea.getHeight()-1) {
+				return false;
+			}else if (sea.getType(fish.getcX(), fish.getcY() + 1) == "R") {
+				return false;
+			}else if (sea.getType(fish.getcX(), fish.getcY() + 1) == "S" && fish.toString() == "S") {
 				return false;
 			}
 			break;

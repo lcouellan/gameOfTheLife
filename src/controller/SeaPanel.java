@@ -26,7 +26,7 @@ public class SeaPanel extends JPanel{
 		for(int i = 0 ;i<sea.getWidth() * sea.getHeight() ; i++) {
 			JButton btn = new JButton();
 			btn.setSize(200,200);
-			switch (sea.getType(i%10,i/10)) {
+			switch (sea.getType(i%sea.getWidth(),i/sea.getHeight())) {
 			    case "S":
                     btn.setIcon(new ImageIcon(SeaPanel.class.getResource("/resources/sardine.png")));
                     break;

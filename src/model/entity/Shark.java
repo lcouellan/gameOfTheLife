@@ -9,6 +9,9 @@ package model.entity;
  * @see Fish
  */
 public class Shark extends Fish{
+	
+	private boolean hungry = true;
+	private int status = 1;
 
 	public Shark() {
 		super();
@@ -20,6 +23,32 @@ public class Shark extends Fish{
 	
 	public String toString() {
 		return "R";
+	}
+	
+	/**
+	 * Indique que le requin a mangé.
+	 */
+	public void eat() {
+		this.hungry = false;
+	}
+	
+	/**
+	 * Indique que le requin a vieilli.
+	 */
+	public void growUp() {
+		this.status += 1;
+	}
+	
+	public boolean isHungry() {
+		return this.hungry;
+	}
+	
+	public void setHungry() {
+		this.hungry = true;
+	}
+	
+	public int getStatus() {
+		return this.status;
 	}
 
 }

@@ -2,6 +2,8 @@ package model.entity;
 
 import java.util.*;
 
+import javax.swing.JOptionPane;
+
 import model.state.StateChild;
 import model.state.StateTeen;
 
@@ -15,7 +17,7 @@ import model.state.StateTeen;
  * @see	Sea
  *
  */
-public class GameOfTheLife{
+public class GameOfTheLife {
 
 	ArrayList<Fish> fishList = new ArrayList<Fish>();
 	Sea sea;
@@ -25,8 +27,9 @@ public class GameOfTheLife{
 	/**
 	 * Génère la vie dans notre mer, crée les sardines et les requins. Les place aléatoirement dans la mer.
 	 */
-	public void generateLife() {
-		this.sea = new Sea();
+	public void generateLife(int nbSharks, int nbSardines) {
+		this.sea = new Sea(nbSharks, nbSardines);
+		int compteurShark = 0,compteurSardine = 0;
 		for(int i=0;i<this.sea.getNbShark();i++) {
 			Random rand = new Random();
 			Boolean spawn = true;
@@ -41,6 +44,8 @@ public class GameOfTheLife{
 				Shark shark = new Shark(coordX,coordY);
 				this.fishList.add(shark);
 				this.sea.setType(coordX, coordY, shark);
+			} else {
+				compteurShark++;
 			}
 		}
 		for(int i=0;i<this.sea.getNbSardine();i++) {
@@ -57,7 +62,17 @@ public class GameOfTheLife{
 				Sardine sardine = new Sardine(coordX,coordY);
 				this.fishList.add(sardine);
 				this.sea.setType(coordX, coordY, sardine);
+			} else {
+				compteurSardine++;
 			}
+		}
+		if ( compteurSardine > 0 ) {
+			JOptionPane jop2 = new JOptionPane();
+			jop2.showMessageDialog(null, compteurSardine+" de vos sardines est / sont morte(s) née(s)\n2017-2017 Never Forget", "RIP Sardine", JOptionPane.WARNING_MESSAGE);		
+		}
+		if ( compteurShark > 0 ) {
+			JOptionPane jop2 = new JOptionPane();
+			jop2.showMessageDialog(null, compteurShark+" de vos requins est / sont mort(s) né(s)\n2017-2017 Never Forget", "RIP Sardine", JOptionPane.WARNING_MESSAGE);		
 		}
 	}
 	
@@ -67,6 +82,7 @@ public class GameOfTheLife{
 	public void refreshAllFishes() {
 		try {
 			this.sea = new Sea();
+			fishList = checkDeadFishes();
 			for(Fish fish: fishList) {
 				this.sea.setType(fish.getcX(), fish.getcY(), fish);
 			}
@@ -79,15 +95,88 @@ public class GameOfTheLife{
 	 * Joue un cycle de vie pour chacun de nos poissons.
 	 */
 	public void playCycle(){
-		StateChild state = new StateChild();
-		StateTeen state2 = new StateTeen();
-		for(Fish shark: this.getSharkList()) {
-			shark.move(state2,this);
-		}
-		for(Fish sardine: this.getSardineList()) {
-			sardine.move(state,this);
+		StateChild stateC = new StateChild();
+		StateTeen stateT = new StateTeen();
+		for(Shark shark: this.getSharkList()) {
+			if (shark.getStatus() == 1) {
+				shark.move(stateC,this);
+			} else {
+				shark.move(stateT,this);
+			}
+			
 		}
 		this.refreshAllFishes();
+		for(Fish sardine: this.getSardineList()) {
+			sardine.move(stateC,this);
+		}
+		this.refreshAllFishes();
+	}
+	
+	/**
+	 * Lance une instance de notre jeu de la vie.
+	 * @param cycle : nombre de tours
+	 */
+	public void startTime(int cycle) {
+		playCycle();
+		if (cycle > 0 && cycle % 3 == 0) {
+			growFishes(3);
+			this.refreshAllFishes();
+		}
+	}
+	
+	/**
+	 * Fais vieillir tous nos poissons et tues les requins qui n'ont pas mangé.
+	 * @param time : temps
+	 */
+	public void growFishes(long time) {
+		for (Fish fish : this.getFishList()) {
+			fish.addAge(time);
+			if ( fish.getAge() == 3 && fish.toString() == "R") {
+				Shark shark = (Shark) fish;
+				shark.growUp();
+			}
+			if ( fish.getAge() == 6 && fish.toString() == "R") {
+				Shark shark = (Shark) fish;
+				if (shark.isHungry()) {
+					shark.setAlive(false);
+				}
+				shark.setHungry();
+			}
+			if ( fish.getAge() == 9) {
+				fish.setAlive(false);
+			}
+		}
+	}
+	
+	/**
+	 * Vérifie s'il y'a toujours des poissons dans la mer.
+	 * @return sigle selon ce qu'il reste dans la mer
+	 */
+	public String checkVictory() {
+		if ( this.getSharkList().size() > 0 && this.getSardineList().size() == 0) {
+			return "R";
+		}
+		else if ( this.getSharkList().size() == 0 && this.getSardineList().size() > 0) {
+			return "S";
+		}
+		else if ( this.getSharkList().size() == 0 && this.getSardineList().size() == 0) {
+			return "N";
+		}
+		return "";
+		
+	}
+	
+	/**
+	 * Met à jour notre liste de poissons en supprimant les poissons morts.
+	 * @return liste de poissons mise à jour
+	 */
+	public ArrayList<Fish> checkDeadFishes() {
+		ArrayList<Fish> fishList = new ArrayList<Fish>();
+		for(Fish fish: this.fishList) {
+			if (fish.isAlive)
+				fishList.add(fish);
+		}
+		return fishList;
 	}
 	
 	public ArrayList<Fish> getFishList() {

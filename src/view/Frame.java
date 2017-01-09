@@ -6,6 +6,7 @@ import java.awt.Panel;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import model.entity.GameOfTheLife;
 import controller.SeaPanel;
@@ -23,23 +24,47 @@ public class Frame extends JFrame implements Runnable{
 	/**
 	 * Constructeur de notre classe, crée une fenêtre contenant notre panel <b>SeaPanel</b>.
 	 */
-	public Frame() {
+	public Frame(int nbSharks, int nbSardines) {
 		this.setTitle("Jeu de la vie");
 		this.setSize(1000, 700);
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
-		this.run();
-		//game.playCycle();
+		this.run(8, nbSharks, nbSardines);
 		this.setVisible(true);
 	}
 	
-	/**
-	 * Lance le jeu
-	 * @param args : arguments
-	 */
-	public static void main(String[] args) {
-		Frame frame = new Frame();
+	public void displayLayout(GameOfTheLife game, int compteur) {
+		this.getContentPane().removeAll();
+    	game.startTime(compteur);
+		SeaPanel pan = new SeaPanel(game.getSea());
+		Panel panTurn = new Panel();
+		JLabel label = new JLabel("Tour : " + compteur);
+		panTurn.add(label);
+		Container cp = this.getContentPane();
+		cp.setLayout(new BorderLayout());
+		cp.add(panTurn,BorderLayout.NORTH);
+		cp.add(pan,BorderLayout.CENTER);
+		pan.repaint();
+		panTurn.repaint();
+		this.setVisible(true);
+	}
+	
+	public boolean end(GameOfTheLife game) {
+		if (game.checkVictory() == "R") {
+        	JOptionPane jop1 = new JOptionPane();
+        	jop1.showMessageDialog(null, "Les requins ont mangés toutes les sardines !", "Victoire des requins", JOptionPane.INFORMATION_MESSAGE);
+        	return true;
+		} else if (game.checkVictory() == "S") {
+            JOptionPane jop1 = new JOptionPane();
+            jop1.showMessageDialog(null, "Les sardines ont survécues aux requins !", "Victoire des sardines", JOptionPane.INFORMATION_MESSAGE);
+            return true;
+		} else if (game.checkVictory() == "N") {
+            JOptionPane jop1 = new JOptionPane();
+            jop1.showMessageDialog(null, "Tous les poissons sont décédés ! :'(", "Match nul", JOptionPane.INFORMATION_MESSAGE);
+            return true;
+		}
+		return false;
 	}
 	
 	/**
@@ -50,25 +75,37 @@ public class Frame extends JFrame implements Runnable{
 	public void run() {
 		// TODO Auto-generated method stub
 		GameOfTheLife game = new GameOfTheLife();
-		game.generateLife();
-		for(int i = 1; i < 10; i++){
-            System.out.println("Tour :"+i);
+		game.generateLife(2,4);
+		while(true){
+			int compteur = 1;
+            System.out.println("Tour :" + compteur);
             try
             {
-            	this.getContentPane().removeAll();
-            	game.playCycle();
-        		SeaPanel pan = new SeaPanel(game.getSea());
-        		Panel panTurn = new Panel();
-        		JLabel label = new JLabel("Tour : "+i);
-        		panTurn.add(label);
-        		Container cp = this.getContentPane();
-        		cp.setLayout(new BorderLayout());
-        		cp.add(panTurn,BorderLayout.NORTH);
-        		cp.add(pan,BorderLayout.CENTER);
-        		pan.repaint();
-        		panTurn.repaint();
-        		this.setVisible(true);
+            	displayLayout(game,compteur);
                 Thread.sleep(1000);
+                if (end(game))
+                	break;
+                
+            }
+            catch (InterruptedException e)
+            {
+                e.printStackTrace();
+            }
+		}
+	}
+	
+	public void run(int cycles, int nbSharks, int nbSardines) {
+		// TODO Auto-generated method stub
+		GameOfTheLife game = new GameOfTheLife();
+		game.generateLife(nbSharks, nbSardines);
+		for (int i = 0; i < cycles; i++) {
+            System.out.println("Tour :" + i);
+            try
+            {
+            	displayLayout(game,i);
+                Thread.sleep(1000);
+                if (end(game))
+                	break;
             }
             catch (InterruptedException e)
             {

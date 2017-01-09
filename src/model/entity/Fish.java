@@ -11,7 +11,6 @@ import model.state.StateFish;
  * @see Sardine
  */
 public class Fish {
-	protected int status;
 	protected long age;
 	protected boolean isAlive = true;
 	protected int cX;
@@ -21,14 +20,12 @@ public class Fish {
 	/**
 	 * Constructeur de base de notre classe
 	 * 
-	 * @param status : 1 : enfant, 2 : ado, 3 : adulte
 	 * @param age : age du poisson
 	 * @param isAlive : indique si le poisson est en vie ou non
 	 * @param cX : Coordonnée X du poisson dans la mer
 	 * @param cY : Coordonnée Y du poisson dans la mer
 	 */
-	public Fish(int status, long age, boolean isAlive, int cX, int cY, String type) {
-		this.status = status;
+	public Fish(long age, boolean isAlive, int cX, int cY, String type) {
 		this.age = age;
 		this.isAlive = isAlive;
 		this.cX = cX;
@@ -42,7 +39,7 @@ public class Fish {
 	 * @param cY : Coordonnée Y du poisson dans la mer
 	 */
 	public Fish(int cX, int cY) {
-		this(1,0,true,cX,cY,"S");
+		this(0,true,cX,cY,"S");
 	}
 	
 	/**
@@ -102,13 +99,6 @@ public class Fish {
 		return false;
 	}
 	
-	public int getStatus() {
-		return status;
-	}
-
-	public void setStatus(int status) {
-		this.status = status;
-	}
 
 	public long getAge() {
 		return age;
@@ -116,6 +106,10 @@ public class Fish {
 
 	public void setAge(long age) {
 		this.age = age;
+	}
+	
+	public void addAge(long time) {
+		this.age += time;
 	}
 
 	public boolean isAlive() {
