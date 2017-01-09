@@ -1,5 +1,5 @@
-- Reproduction
+- Ajouter un comportements aux requins en fonction de leurs age car ils sont obligatoirement ado dès leurs création pour l'instant
 - Interdire mouvements sur Requins
-- Collisions => Création + mouvements
+- Collisions => Création + mouvements // Attentions aux croisements 
 - Interface (si le temps le permet on laisse l'utilisateur choisir un nombre de requin et de sardines etc........)
 - Super sardine :'D

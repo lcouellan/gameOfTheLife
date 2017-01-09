@@ -23,7 +23,7 @@ public class Sea {
 	 * par les constantes WIDTH et HEIGHT.
 	 */
 	public Sea() {
-		this.nbSardine = 5;
+		this.nbSardine = 2;
 		this.nbShark = 2;
 		this.cells = new Fish [WIDTH][HEIGHT];
 	}
