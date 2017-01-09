@@ -17,7 +17,7 @@ import model.entity.Sea;
 public class SeaPanel extends JPanel{
 	
 	/**
-	 * Constructeur principal de notre classe
+	 * Constructeur principal de notre classe.
 	 * @param sea : Mer
 	 */
 	public SeaPanel(Sea sea) {	

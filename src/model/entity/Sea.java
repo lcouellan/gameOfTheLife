@@ -2,8 +2,7 @@ package model.entity;
 
 
 /**
- * Classe <b> Sea </b> qui créer l'environnement dans lequel évoluent nos
- * poissons
+ * Classe <b> Sea </b> qui crée l'environnement dans lequel évoluent nos poissons.
  * 
  * @author Raphaël Erfani, Lénaïc Couellan
  * @version 1.0
@@ -21,7 +20,7 @@ public class Sea {
 	
 	/**
 	 * Constructeur par défaut de Sea, sa taille est définie par défaut
-	 * par les constante WIDTH et HEIGHT
+	 * par les constantes WIDTH et HEIGHT.
 	 */
 	public Sea() {
 		this.nbSardine = 5;
@@ -30,8 +29,8 @@ public class Sea {
 	}
 	
 	/**
-	 * Constructeur de la classe Sea ou l'on choisi la taille que
-	 * l'on attribue à Sea
+	 * Constructeur de la classe Sea ou l'on choisit la taille que
+	 * l'on attribue à Sea.
 	 * @param nbShark Nombre de requins présents dans la mer
 	 * @param nbSardine Nombre de sardines présentes dans la mer
 	 * @param width Largeur de la mer
@@ -47,7 +46,7 @@ public class Sea {
 	}
 	
 	/**
-	 * Modifie le type de la case dans la mer (nul, sardine ou requin)
+	 * Modifie le type de la case dans la mer (nul, sardine ou requin).
 	 * @param x : coordonnée x
 	 * @param y : coordonnée y
 	 * @param type : type de la cellule (nul, sardine, requin)
@@ -57,7 +56,7 @@ public class Sea {
 	}
 	
 	/**
-	 * Donne le type de la case dans la mer
+	 * Donne le type de la case dans la mer.
 	 * @param x : Coordonnée x
 	 * @param y : Coordonnée y
 	 * @return : type de la cellule 

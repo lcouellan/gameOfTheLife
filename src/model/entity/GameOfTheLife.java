@@ -6,10 +6,10 @@ import model.state.StateChild;
 import model.state.StateTeen;
 
 /**
- * Classe <b> GameOfTheLife </b> permet de rÃ©gir le jeu. C'est Ã  dire qu'elle
- * instancie une nouvelle <b> Sea </b> et prÃ©cise le nombre de poissons prÃ©sents
+ * Classe <b> GameOfTheLife </b> permet de régir le jeu. C'est à dire qu'elle
+ * instancie une nouvelle <b> Sea </b> et précise le nombre de poissons présents
  * 
- * @author RaphaÃ«l Erfani, LÃ©naÃ¯c Couellan
+ * @author Raphaël Erfani, Lénaïc Couëllan
  * @version 1.0
  * @see Fish
  * @see	Sea
@@ -23,7 +23,7 @@ public class GameOfTheLife{
 	
 	
 	/**
-	 * GÃ©nÃ¨re la vie dans notre mer, crÃ©e les sardines et les requins. Les place alÃ©atoirement dans la merde.
+	 * Génère la vie dans notre mer, crée les sardines et les requins. Les place aléatoirement dans la mer.
 	 */
 	public void generateLife() {
 		this.sea = new Sea();
@@ -61,6 +61,9 @@ public class GameOfTheLife{
 		}
 	}
 	
+	/** 
+	 * Raffraichis la mer avec la liste de nos poissons.
+	 */
 	public void refreshAllFishes() {
 		try {
 			this.sea = new Sea();
@@ -72,6 +75,9 @@ public class GameOfTheLife{
 		}
 	}
 	
+	/**
+	 * Joue un cycle de vie pour chacun de nos poissons.
+	 */
 	public void playCycle(){
 		StateChild state = new StateChild();
 		StateTeen state2 = new StateTeen();
@@ -88,6 +94,10 @@ public class GameOfTheLife{
 		return fishList;
 	}
 	
+	/**
+	 * Crée une liste de requins à partir de notre liste de poissons.
+	 * @return une liste de requins.
+	 */
 	public ArrayList<Shark> getSharkList() {
 		ArrayList<Shark> sharkList = new ArrayList<Shark>();
 		for(int i = 0; i < this.getFishList().size(); i++){
@@ -96,7 +106,11 @@ public class GameOfTheLife{
 		}
 		return sharkList;
 	}
-
+	
+	/**
+	 * Crée une liste de sardines à partir de notre liste de poissons.
+	 * @return une liste de sardines.
+	 */
 	public ArrayList<Sardine> getSardineList() {
 		ArrayList<Sardine> sardineList = new ArrayList<Sardine>();
 		for(int i = 0; i < this.getFishList().size(); i++){

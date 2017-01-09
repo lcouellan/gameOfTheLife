@@ -6,7 +6,7 @@ import model.entity.GameOfTheLife;
 /**
  * La classe <b>StateTeen</b> est une classe qui permet la gestion des mouvements de nos requins avec un état "jeune adulte".
  * 
- * @author RaphaÃ«l Erfani, LÃ©naÃ¯c CouÃ«llan
+ * @author Raphaël Erfani, Lénaïc Couëllan
  * @version 1.0
  * @see StateFish
  */
@@ -15,9 +15,9 @@ public class StateTeen extends StateFish{
 	
 	/**
 	 * Méthode qui permet de faire un déplacement plus intelligent que celui du statut "enfant".
-	 * Ce dÃ©placement simule donc le dÃ©placement d'un requin "jeune adulte". Ce dernier se dÃ©place sur une case adjacente
-	 * lorsque cette derniÃ¨re contient une sardine. Un requin "jeune adulte" Ã  donc des dÃ©placements plus menaÃ§ant qu'un requin "enfant"
-	 * Si aucunes sardine ne se trouvent sur les cases adjacentes, on reste sur un mouvement alÃ©atoire.
+	 * Ce déplacement simule donc le déplacement d'un requin "jeune adulte". Ce dernier se déplace sur une case adjacente.
+	 * lorsque cette dernière contient une sardine. Un requin "jeune adulte" à  donc des déplacements plus menaçant qu'un requin "enfant".
+	 * Si aucune sardine ne se trouvent sur les cases adjacentes, on reste sur un mouvement aléatoire.
 	 */
 	public void move(Fish fish, GameOfTheLife game) {
 		String direction = fish.isSardineNear(game);

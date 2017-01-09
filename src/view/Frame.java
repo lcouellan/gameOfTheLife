@@ -20,6 +20,9 @@ import controller.SeaPanel;
  */
 public class Frame extends JFrame implements Runnable{
 	
+	/**
+	 * Constructeur de notre classe, crée une fenêtre contenant notre panel <b>SeaPanel</b>.
+	 */
 	public Frame() {
 		this.setTitle("Jeu de la vie");
 		this.setSize(1000, 700);
@@ -30,9 +33,19 @@ public class Frame extends JFrame implements Runnable{
 		//game.playCycle();
 		this.setVisible(true);
 	}
+	
+	/**
+	 * Lance le jeu
+	 * @param args : arguments
+	 */
 	public static void main(String[] args) {
 		Frame frame = new Frame();
 	}
+	
+	/**
+	 * Fonction permettant de gérer les Threads et donc le temps.
+	 * Crée une nouvelle instance de <b>GameOfTheLife</b>. Lance une partie sur plusieurs tours et raffraichis notre panel afin d'actualiser la mer.
+	 */
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub

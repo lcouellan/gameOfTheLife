@@ -36,6 +36,7 @@ public class Fish {
 	}
 	
 	/**
+	 * Crée une sardine à des coordonnées X et Y.
 	 * 
 	 * @param cX : Coordonnée X du poisson dans la mer
 	 * @param cY : Coordonnée Y du poisson dans la mer
@@ -44,23 +45,34 @@ public class Fish {
 		this(1,0,true,cX,cY,"S");
 	}
 	
+	/**
+	 * Crée une sardine aux coordonnées 0,0.
+	 */
 	public Fish() {
 		this(0,0);
 	}
 	
 	/**
-	 * Indique que le poisson est mort
+	 * Indique que le poisson est mort.
 	 */
 	public void isDead() {
 		this.isAlive = false;
 	}
 	
+	/**
+	 * Fais bouger le poisson selon l'état que l'on lui donne en paramètre grâce à <b>StateFish</b>.
+	 * @param etat : pour un requin : enfant, jeune adulte ... 
+	 * @param game : jeu
+	 */
 	public void move(StateFish etat, GameOfTheLife game) {
 		etat.move(this,game);
 	}
 	
-	// On test si il y a une sardine dans les cases adjacentes
-	// Si il y en a une on retourne la direction dans laquelle elle se trouve
+	/**
+	 * Donne la direction de la sardine si elle se trouve dans une des cases adjacentes au poisson.
+	 * @param game : jeu
+	 * @return la direction d'une sardine si elle se situe sur une case adjacente sinon "NULL".
+	 */
 	public String isSardineNear(GameOfTheLife game) {
 		// Vérification a gauche
 		if (this.getcX() != 0) {

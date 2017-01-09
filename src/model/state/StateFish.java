@@ -14,8 +14,10 @@ import model.entity.Sea;
 public abstract class StateFish {
 	
 	/**
-	 * Fais bouger notre poisson
-	 * @param sea 
+	 * Fait bouger notre poisson.
+	 * De base, crée un mouvement aléatoire selon un nombre tiré au sort et donne la direction dans laquelle va se diriger le poisson. 
+	 * @param fish : poisson
+	 * @param game : jeu
 	 */
 	public void move(Fish fish, GameOfTheLife game) {
 		Sea sea = game.getSea();
@@ -47,6 +49,13 @@ public abstract class StateFish {
 		}
 	}
 	
+	/**
+	 * Détermine pour un poisson si le mouvement vers la direction donnée en paramètre est possible ou non.
+	 * @param fish : poisson
+	 * @param sea : mer
+	 * @param direction
+	 * @return booléen mouvement possible ou non.
+	 */
 	public boolean isMovePossible(Fish fish,Sea sea,String direction) {
 		switch(direction){
 		case "LEFT":

@@ -15,8 +15,7 @@ public class StateChild extends StateFish{
 	
 	/**
 	 * Méthode qui permet de faire un déplacement aléatoire. Ce déplacement simule donc le déplacement d'un jeune poisson.
-	 * On se base sur un random et en fonction du résultat le déplacement se fait en haut, à droite, en bas ou à gauche.
-	 * Il faut aussi faire attention bords, on ne peut pas se déplacer plus loin qu'un bord.
+	 * Fait appel à la fonction parent ( <b>Statefish</b> ).
 	 */
 	public void move(Fish fish, GameOfTheLife game) {
 		super.move(fish, game);
