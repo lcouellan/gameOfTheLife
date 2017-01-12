@@ -43,13 +43,6 @@ public class StateTeen extends StateFish{
 			super.move(fish, game);
 			return;
 		}
-		game.getSea().setType(fish.getcX(),fish.getcY(),fish);
-		for(int i = 0; i < game.getFishList().size(); i++){
-		     if (game.getFishList().get(i).getcX() == fish.getcX() && game.getFishList().get(i).getcY() == fish.getcY() && game.getFishList().get(i).toString() == "S"){
-		    	 game.getFishList().remove(i);
-		     	 Shark shark = (Shark) fish;
-		     	 shark.eat();
-		     }
-		}
+		kill(fish, game);
 	}
 }

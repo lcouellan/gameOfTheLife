@@ -4,6 +4,7 @@ import java.util.*;
 
 import javax.swing.JOptionPane;
 
+import model.state.StateAdult;
 import model.state.StateChild;
 import model.state.StateTeen;
 
@@ -97,11 +98,17 @@ public class GameOfTheLife {
 	public void playCycle(){
 		StateChild stateC = new StateChild();
 		StateTeen stateT = new StateTeen();
+		StateAdult stateA = new StateAdult();
 		for(Shark shark: this.getSharkList()) {
 			if (shark.getStatus() == 1) {
 				shark.move(stateC,this);
-			} else {
+			} else if (shark.getStatus() == 2) {
 				shark.move(stateT,this);
+			} else  {
+				shark.move(stateA, this);
+			}
+			if (shark.getAge() % 4 == 0 && shark.getAge() > 0) {
+				this.reproduire(shark);
 			}
 		}
 		this.refreshAllFishes();
@@ -109,35 +116,60 @@ public class GameOfTheLife {
 			sardine.move(stateC,this);
 			// tous les 4 cycles une sardine donne naissance à une autre
 			if(sardine.getAge() % 4 == 0 && sardine.getAge() > 0) {
-				System.out.println(sardine.getAge());
-				String newBorn = sardine.isCaseEmpty(this);
-				switch(newBorn){
-				case "LEFT":
-					Sardine newSardineL = new Sardine(sardine.getcX()-1,sardine.getcY());
-					this.fishList.add(newSardineL);
-					this.sea.setType(newSardineL.getcX(), newSardineL.getcY(), sardine);
-					break;
-				case "RIGHT":
-					Sardine newSardineR = new Sardine(sardine.getcX()+1,sardine.getcY());
-					this.fishList.add(newSardineR);
-					this.sea.setType(newSardineR.getcX(), newSardineR.getcY(), sardine);
-					break;
-				case "TOP":
-					Sardine newSardineT = new Sardine(sardine.getcX(),sardine.getcY()-1);
-					this.fishList.add(newSardineT);
-					this.sea.setType(newSardineT.getcX(), newSardineT.getcY(), sardine);
-					break;
-				case "BOTTOM":
-					Sardine newSardineB = new Sardine(sardine.getcX(),sardine.getcY()+1);
-					this.fishList.add(newSardineB);
-					this.sea.setType(newSardineB.getcX(), newSardineB.getcY(), sardine);
-					break;
-				case "NULL":
-					break;
-				}
+				this.reproduire(sardine);
 			}
 		}
 		this.refreshAllFishes();
+	}
+	
+	/**
+	 * Reproduction de nos poissons.
+	 * @param fish : poisson
+	 */
+	public void reproduire(Fish fish) {
+		String newBorn = fish.isCaseEmpty(this);
+		switch(newBorn){
+		case "LEFT":
+			Fish fishL;
+			if ( fish.toString() == "R") {
+				fishL = new Shark(fish.getcX()-1, fish.getcY());
+			} else {
+				fishL = new Sardine(fish.getcX()-1,fish.getcY());
+			}
+			this.fishList.add(fishL);
+			this.sea.setType(fishL.getcX(), fishL.getcY(), fishL);
+			break;
+		case "RIGHT":
+			Fish fishR;
+			if ( fish.toString() == "R") {
+				fishR = new Shark(fish.getcX() + 1, fish.getcY());
+			} else {
+				fishR = new Sardine(fish.getcX() + 1,fish.getcY());
+			}
+			this.fishList.add(fishR);
+			this.sea.setType(fishR.getcX(), fishR.getcY(), fishR);
+			break;
+		case "TOP":
+			Fish fishT;
+			if ( fish.toString() == "R") {
+				fishT = new Shark(fish.getcX(), fish.getcY() - 1);
+			} else {
+				fishT = new Sardine(fish.getcX(),fish.getcY() - 1);
+			}
+			this.fishList.add(fishT);
+			this.sea.setType(fishT.getcX(), fishT.getcY(), fishT);
+			break;
+		case "BOTTOM":
+			Fish fishB;
+			if ( fish.toString() == "R") {
+				fishB = new Shark(fish.getcX(), fish.getcY() + 1);
+			} else {
+				fishB = new Sardine(fish.getcX(),fish.getcY() + 1);
+			}
+			this.fishList.add(fishB);
+			this.sea.setType(fishB.getcX(), fishB.getcY(), fishB);
+			break;
+		}
 	}
 	
 	/**
@@ -152,24 +184,33 @@ public class GameOfTheLife {
 	
 	/**
 	 * Fais vieillir tous nos poissons et tues les requins qui n'ont pas mangé.
+	 * Les sardines meurent au bout de 6 tours.
+	 * Les requins meurent au bout de 6 tours sans manger et 9 tours s'ils ont réussi à se nourrir. 
 	 * @param time : temps
 	 */
 	public void growFishes(long time) {
 		for (Fish fish : this.getFishList()) {
 			fish.addAge(time);
-			if ( fish.getAge() == 3 && fish.toString() == "R") {
-				Shark shark = (Shark) fish;
+			if ( fish.getAge() == 6 && fish.toString() == "S") {
+				fish.setAlive(false);
+			}
+		}
+		for (Shark shark: this.getSharkList()) {
+			if (shark.getAge() == 3) {
 				shark.growUp();
 			}
-			if ( fish.getAge() == 6 && fish.toString() == "R") {
-				Shark shark = (Shark) fish;
+//			if ( fish.getAge() == 6 && fish.toString() == "R") {
+//				Shark shark = (Shark) fish;
+//				shark.growUp();
+//			}
+			if (shark.getAge() == 6) {
 				if (shark.isHungry()) {
 					shark.setAlive(false);
 				}
 				shark.setHungry();
 			}
-			if ( fish.getAge() == 9) {
-				fish.setAlive(false);
+			if (shark.getAge() == 9) {
+				shark.setAlive(false);
 			}
 		}
 	}

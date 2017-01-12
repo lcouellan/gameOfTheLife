@@ -49,14 +49,19 @@ public abstract class StateFish {
 				move(fish,game);
 		}
 		if (fish.toString() == "R" && game.getSea().getType(fish.getcX(), fish.getcY()) == "S"){
-			game.getSea().setType(fish.getcX(),fish.getcY(),fish);
-			for(int i = 0; i < game.getFishList().size(); i++){
-			     if (game.getFishList().get(i).getcX() == fish.getcX() && game.getFishList().get(i).getcY() == fish.getcY() && game.getFishList().get(i).toString() == "S"){
-			    	 game.getFishList().remove(i);
-			     	 Shark shark = (Shark) fish;
-			     	 shark.eat();
-			     }
-			}
+			kill(fish,game);
+		}
+	}
+	
+	public void kill(Fish fish, GameOfTheLife game) {
+		game.getSea().setType(fish.getcX(),fish.getcY(),fish);
+		for(int i = 0; i < game.getFishList().size(); i++){
+		     if (game.getFishList().get(i).getcX() == fish.getcX() && game.getFishList().get(i).getcY() == fish.getcY() && game.getFishList().get(i).toString() == "S"){
+		    	 game.getFishList().remove(i);
+		     	 Shark shark = (Shark) fish;
+		     	 //System.out.println("a mangé");
+		     	 shark.eat();
+		     }
 		}
 	}
 	

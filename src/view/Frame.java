@@ -26,11 +26,10 @@ public class Frame extends JFrame implements Runnable{
 	 */
 	public Frame(int nbSharks, int nbSardines) {
 		this.setTitle("Jeu de la vie");
-		this.setSize(1000, 700);
-		this.setResizable(false);
+		this.setSize(950, 950);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
-		this.run(8, nbSharks, nbSardines);
+		this.run(15, nbSharks, nbSardines);
 		this.setVisible(true);
 	}
 	
@@ -74,24 +73,6 @@ public class Frame extends JFrame implements Runnable{
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
-		GameOfTheLife game = new GameOfTheLife();
-		game.generateLife(2,4);
-		while(true){
-			int compteur = 1;
-            System.out.println("Tour :" + compteur);
-            try
-            {
-            	displayLayout(game,compteur);
-                Thread.sleep(1000);
-                if (end(game))
-                	break;
-                
-            }
-            catch (InterruptedException e)
-            {
-                e.printStackTrace();
-            }
-		}
 	}
 	
 	public void run(int cycles, int nbSharks, int nbSardines) {
@@ -103,7 +84,7 @@ public class Frame extends JFrame implements Runnable{
             try
             {
             	displayLayout(game,i);
-                Thread.sleep(1000);
+                Thread.sleep(500);
                 if (end(game))
                 	break;
             }
