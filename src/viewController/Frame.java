@@ -1,4 +1,4 @@
-package view;
+package viewController;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -9,7 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import model.entity.GameOfTheLife;
-import controller.SeaPanel;
 
 /**
  * La classe <b>Frame</b> est la fenêtre de notre interface graphique.
@@ -24,12 +23,12 @@ public class Frame extends JFrame implements Runnable{
 	/**
 	 * Constructeur de notre classe, crée une fenêtre contenant notre panel <b>SeaPanel</b>.
 	 */
-	public Frame(int nbSharks, int nbSardines) {
+	public Frame(int nbCycles, int nbSharks, int nbSardines, int width, int height) {
 		this.setTitle("Jeu de la vie");
-		this.setSize(950, 950);
+		this.setSize(width * 100, height * 100);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
-		this.run(15, nbSharks, nbSardines);
+		this.run(nbCycles, nbSharks, nbSardines, width, height);
 		this.setVisible(true);
 	}
 	
@@ -75,23 +74,29 @@ public class Frame extends JFrame implements Runnable{
 		// TODO Auto-generated method stub
 	}
 	
-	public void run(int cycles, int nbSharks, int nbSardines) {
+	public void run(int cycles, int nbSharks, int nbSardines, int width, int height) {
 		// TODO Auto-generated method stub
+		Boolean victory = false;
 		GameOfTheLife game = new GameOfTheLife();
-		game.generateLife(nbSharks, nbSardines);
-		for (int i = 0; i < cycles; i++) {
-            System.out.println("Tour :" + i);
+		game.generateLife(nbSharks, nbSardines, width, height);
+		for (int i = 1; i < cycles + 1; i++) {
             try
             {
             	displayLayout(game,i);
-                Thread.sleep(500);
-                if (end(game))
+                Thread.sleep(1000);
+                if (end(game)) {
+                	victory = true;
                 	break;
+                }
             }
             catch (InterruptedException e)
             {
                 e.printStackTrace();
             }
+		}
+		if (victory == false) {
+			JOptionPane jop1 = new JOptionPane();
+    		jop1.showMessageDialog(null, "Ils restent encore des sardines et des requins !", "Temps écoulé", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 }

@@ -26,10 +26,6 @@ public class Sea {
 		this(5,2,10,10);
 	}
 	
-	public Sea(int nbSharks, int nbSardines) {
-		this(nbSharks,nbSardines,10,10);
-	}
-	
 	/**
 	 * Constructeur de la classe Sea ou l'on choisit la taille que
 	 * l'on attribue à Sea.

@@ -2,7 +2,6 @@ package model.state;
 
 import model.entity.Fish;
 import model.entity.GameOfTheLife;
-import model.entity.Shark;
 
 /**
  * La classe <b>StateTeen</b> est une classe qui permet la gestion des mouvements de nos requins avec un état "jeune adulte".

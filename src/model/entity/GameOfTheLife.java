@@ -28,8 +28,8 @@ public class GameOfTheLife {
 	/**
 	 * Génère la vie dans notre mer, crée les sardines et les requins. Les place aléatoirement dans la mer.
 	 */
-	public void generateLife(int nbSharks, int nbSardines) {
-		this.sea = new Sea(nbSharks, nbSardines);
+	public void generateLife(int nbSharks, int nbSardines, int width, int height) {
+		this.sea = new Sea(nbSharks, nbSardines, width, height);
 		int compteurShark = 0,compteurSardine = 0;
 		for(int i=0;i<this.sea.getNbShark();i++) {
 			Random rand = new Random();
@@ -80,9 +80,9 @@ public class GameOfTheLife {
 	/** 
 	 * Raffraichis la mer avec la liste de nos poissons.
 	 */
-	public void refreshAllFishes() {
+	public void refreshAllFishes(Sea sea) {
 		try {
-			this.sea = new Sea();
+			this.sea = new Sea(this.sea.nbShark,this.sea.nbSardine,this.sea.width,this.sea.height);
 			fishList = checkDeadFishes();
 			for(Fish fish: fishList) {
 				this.sea.setType(fish.getcX(), fish.getcY(), fish);
@@ -94,12 +94,16 @@ public class GameOfTheLife {
 	
 	/**
 	 * Joue un cycle de vie pour chacun de nos poissons.
+	 * Les poissons se reproduisent tous les 3 tours.
 	 */
 	public void playCycle(){
 		StateChild stateC = new StateChild();
 		StateTeen stateT = new StateTeen();
 		StateAdult stateA = new StateAdult();
 		for(Shark shark: this.getSharkList()) {
+			if (shark.getAge() % 3 == 0 && shark.getAge() > 0) {
+				this.reproduire(shark);
+			}
 			if (shark.getStatus() == 1) {
 				shark.move(stateC,this);
 			} else if (shark.getStatus() == 2) {
@@ -107,19 +111,15 @@ public class GameOfTheLife {
 			} else  {
 				shark.move(stateA, this);
 			}
-			if (shark.getAge() % 4 == 0 && shark.getAge() > 0) {
-				this.reproduire(shark);
-			}
 		}
-		this.refreshAllFishes();
+		this.refreshAllFishes(this.sea);
 		for(Fish sardine: this.getSardineList()) {
-			sardine.move(stateC,this);
-			// tous les 4 cycles une sardine donne naissance à une autre
-			if(sardine.getAge() % 4 == 0 && sardine.getAge() > 0) {
+			if(sardine.getAge() % 3 == 0 && sardine.getAge() > 0) {
 				this.reproduire(sardine);
 			}
+			sardine.move(stateC,this);
 		}
-		this.refreshAllFishes();
+		this.refreshAllFishes(this.sea);
 	}
 	
 	/**
@@ -179,7 +179,7 @@ public class GameOfTheLife {
 	public void startTime(int cycle) {
 		playCycle();
 		growFishes(1);
-		this.refreshAllFishes();
+		this.refreshAllFishes(this.sea);
 	}
 	
 	/**

@@ -1,25 +1,15 @@
-package view;
+package viewController;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.WindowEvent;
 
 import javax.swing.Box;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import controller.SeaPanel;
 import model.entity.GameOfTheLife;
 
 /**
@@ -68,7 +58,7 @@ public class Launcher extends JDialog implements ActionListener{
 
 	public static void main(String[] args) {
 		//new Launcher();
-		new Frame(4,6);
+		new Frame(3,1,1,5,5);
 
 	}
 
@@ -77,7 +67,7 @@ public class Launcher extends JDialog implements ActionListener{
 		// TODO Auto-generated method stub
 		if (e.getSource() == valid) {
 			this.dispose();
-			new Frame(Integer.parseInt(sharkF.getText()),Integer.parseInt(sardineF.getText()));
+			//new Frame(Integer.parseInt(sharkF.getText()),Integer.parseInt(sardineF.getText()));
 		}
 		if (e.getSource() == quit) {
 			this.dispose();
